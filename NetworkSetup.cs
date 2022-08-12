@@ -16,12 +16,6 @@ public class NetworkSetup : Control
 		playerName = new_text;
 	}
 
-	private void _on_HostButton_pressed()
-	{
-		Network.GetInstance().HostGame();
-		Hide();
-	}
-
 	private void _on_JoinButton_pressed()
 	{
 		Network.GetInstance().SetPlayerName(playerName);

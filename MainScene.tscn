@@ -52,17 +52,10 @@ margin_bottom = 52.0
 align = 1
 placeholder_text = "Player name"
 
-[node name="HostButton" type="Button" parent="NetworkSetup/VBoxContainer"]
+[node name="JoinButton" type="Button" parent="NetworkSetup/VBoxContainer"]
 margin_top = 56.0
 margin_right = 350.0
 margin_bottom = 116.0
-rect_min_size = Vector2( 0, 60 )
-text = "Host game"
-
-[node name="JoinButton" type="Button" parent="NetworkSetup/VBoxContainer"]
-margin_top = 120.0
-margin_right = 350.0
-margin_bottom = 180.0
 rect_min_size = Vector2( 0, 60 )
 text = "Join game"
 
@@ -76,5 +69,4 @@ script = ExtResource( 3 )
 
 [connection signal="text_changed" from="NetworkSetup/VBoxContainer/IpAddress" to="NetworkSetup" method="_on_IpAddress_text_changed"]
 [connection signal="text_changed" from="NetworkSetup/VBoxContainer/PlayerName" to="NetworkSetup" method="_on_PlayerName_text_changed"]
-[connection signal="pressed" from="NetworkSetup/VBoxContainer/HostButton" to="NetworkSetup" method="_on_HostButton_pressed"]
 [connection signal="pressed" from="NetworkSetup/VBoxContainer/JoinButton" to="NetworkSetup" method="_on_JoinButton_pressed"]
