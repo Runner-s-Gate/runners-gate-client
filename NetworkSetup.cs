@@ -3,7 +3,7 @@ using System;
 
 public class NetworkSetup : Control
 {
-	private string ipAddr = "127.0.0.1";
+	private string ipAddr = "20.91.204.218";
 	private string playerName = "";
 
 	private void _on_IpAddress_text_changed(String new_text)
