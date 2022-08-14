@@ -26,10 +26,10 @@ public class PlayerController : KinematicBody
 			velocity.x -= 1;
 
 		if (Input.IsActionPressed("move_forward"))
-			velocity.z += 1;
+			velocity.z -= 1;
 
 		if (Input.IsActionPressed("move_back"))
-			velocity.z -= 1;
+			velocity.z += 1;
 
 		velocity = velocity.Normalized() * Speed;
 		
