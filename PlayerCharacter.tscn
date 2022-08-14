@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://PlayerController.cs" type="Script" id=1]
+
+[sub_resource type="CapsuleShape" id=1]
+
+[sub_resource type="ViewportTexture" id=2]
+viewport_path = NodePath("LabelOrigin/Viewport")
+
+[node name="KinematicBody" type="KinematicBody"]
+script = ExtResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
+
+[node name="LabelOrigin" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60462, 0 )
+
+[node name="Viewport" type="Viewport" parent="LabelOrigin"]
+size = Vector2( 300, 25 )
+transparent_bg = true
+
+[node name="Label" type="Label" parent="LabelOrigin/Viewport"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "<Player Name>"
+align = 1
+valign = 1
+
+[node name="Sprite3D" type="Sprite3D" parent="LabelOrigin"]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0 )
+flip_v = true
+billboard = 1
+texture = SubResource( 2 )

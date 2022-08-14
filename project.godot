@@ -10,7 +10,7 @@ config_version=4
 
 [application]
 
-config/name="runners-gate-core"
+config/name="runners-gate-client"
 run/main_scene="res://MainScene.tscn"
 config/icon="res://icon.png"
 
