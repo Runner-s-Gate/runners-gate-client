@@ -6,7 +6,8 @@ public class Network : Node
 {
 	private static Network _instance;
 	
-	private readonly int default_port = 4321;
+	private readonly string ipAddr = (string)ConfigLoader.GetValue("network", "server_ip");
+	private readonly int defaultPort = (int)ConfigLoader.GetValue("network", "server_port");
 
 	private string PlayerName { get; set; }
 
@@ -27,12 +28,12 @@ public class Network : Node
 		_instance = this;
 	}
 
-	public void JoinGame(string address)
+	public void JoinGame()
 	{
-		GD.Print($"Joining game with address {address}");
+		GD.Print($"Joining game with address: {ipAddr}, port: {defaultPort}");
 
 		var clientPeer = new NetworkedMultiplayerENet();
-		var result = clientPeer.CreateClient(address, default_port);
+		var result = clientPeer.CreateClient(ipAddr, defaultPort);
 
 		GetTree().NetworkPeer = clientPeer;
 	}
