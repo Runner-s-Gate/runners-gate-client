@@ -58,6 +58,10 @@ public class Network : Node
 		this.PlayerName = playerName + "cube";
 	}
 
+	public string GetPlayerName() {
+		return this.PlayerName;
+	}
+
 	private void PlayerConnected(int id)
 	{
 		GD.Print($"tell other player my name is {PlayerName}");

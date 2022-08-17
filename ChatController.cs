@@ -1,0 +1,27 @@
+using Godot;
+using System;
+
+public class ChatController : Node
+{
+    private LineEdit chatEdit;
+    private TextEdit chatLog;
+
+    public override void _Ready() {
+        this.chatEdit = (LineEdit)GetNode("VBoxContainer/ChatEdit");
+        this.chatLog = (TextEdit)GetNode("VBoxContainer/ChatLog");
+    }
+
+	private void _on_ChatEdit_text_entered(string new_text)
+	{
+        Rpc("SubmitChatMessage", Network.GetInstance().GetPlayerName(), new_text);
+        this.chatEdit.Clear();
+	}
+
+    [Remote]
+    private void ReceiveChatMessage(string playerName, string text)
+    {
+        GD.Print("Hello from RpcFunction! " + playerName + ", " + text);
+        this.chatLog.Text += $"[{playerName}] {text}\n";
+        this.chatLog.ScrollVertical = this.chatLog.GetLineCount();
+    }
+}
