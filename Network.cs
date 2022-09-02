@@ -97,10 +97,12 @@ public class Network : Node
 	private void RegisterPlayer(string playerName)
 	{
 		var id = GetTree().GetRpcSenderId();
-		Players.Add(id, playerName);
-		GD.Print($"{playerName} added with ID {id}");
-		// a player has been added spawn in the right location
-		SpawnPlayer(id, playerName);
+		if(id != 1) {	// Server has no in-game representation
+			Players.Add(id, playerName);
+			GD.Print($"{playerName} added with ID {id}");
+			// a player has been added spawn in the right location
+			SpawnPlayer(id, playerName);
+		}
 	}
 
 	[Remote]
