@@ -20,7 +20,7 @@ jobs:
       run: cp config-prod.cfg config.cfg
 
     - name: Build project.godot
-      run: ./Godot_v3.5-stable_mono_linux_headless.64 --export-pack "Linux/X11" runners-gate-server/project.godot
+      run: ./Godot_v3.5-stable_mono_linux_headless.64 --export-pack "Windows Desktop"
       
     - name: Package build output 
       run: zip -r az-upload-dir/runners-gate.zip release
