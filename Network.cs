@@ -36,6 +36,9 @@ public class Network : Node
 		var result = clientPeer.CreateClient(ipAddr, defaultPort);
 
 		GetTree().NetworkPeer = clientPeer;
+
+		var id = GetTree().GetRpcSenderId();
+		GD.Print($"Print o: {id}");
 	}
 
 	public void LeaveGame()
@@ -96,12 +99,15 @@ public class Network : Node
 	[Remote]
 	private void RegisterPlayer(string playerName)
 	{
-		var id = GetTree().GetRpcSenderId();
-		if(id != 1) {	// Server has no in-game representation
-			Players.Add(id, playerName);
+		int id = GetTree().GetRpcSenderId();
+		Players.Add(id, playerName);
+
+		if(id == 1) {
+			GD.Print($"Server added with ID {id}");
+		} else {
 			GD.Print($"{playerName} added with ID {id}");
 			// a player has been added spawn in the right location
-			SpawnPlayer(id, playerName);
+			SpawnPlayer(id, playerName, new Vector3(0, 5, 0));
 		}
 	}
 
@@ -109,10 +115,10 @@ public class Network : Node
 	private void StartGame()
 	{
 		// spawn yourself
-		SpawnPlayer(GetTree().GetNetworkUniqueId(), PlayerName);
+		SpawnPlayer(GetTree().GetNetworkUniqueId(), PlayerName, new Vector3(0, 5, 0));
 	}
 
-	private void SpawnPlayer(int id, string playerName)
+	private void SpawnPlayer(int id, string playerName, Vector3 spawnPosition)
 	{
 		// load the players
 		var playerScene = (PackedScene)ResourceLoader.Load("res://PlayerCharacter.tscn");
@@ -122,7 +128,7 @@ public class Network : Node
 		playerNode.SetNetworkMaster(id);
 
 		Transform t = playerNode.Transform;
-		t.origin = new Vector3(0, 5, 0);
+		t.origin = spawnPosition;
 		playerNode.Transform = t;
 
 		playerNode.SetPlayerName(GetTree().GetNetworkUniqueId() == id ? PlayerName : playerName);

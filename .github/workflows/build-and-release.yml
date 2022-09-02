@@ -1,0 +1,34 @@
+name: Build and Release client
+
+on:
+  push:
+    branches: [ "release" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: build-release
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Copy Godot Headless Installation
+      run: cp -r /home/azureuser/Godot_v3.5-stable_mono_linux_headless_64/* .
+
+    - name: Copy config file
+      run: cp config-prod.cfg config.cfg
+
+    - name: Build project.godot
+      run: ./Godot_v3.5-stable_mono_linux_headless.64 --export-pack "Linux/X11" runners-gate-server/project.godot
+      
+    - name: Package build output 
+      run: zip -r az-upload-dir/runners-gate.zip release
+      
+    - name: Azure Blob Storage Upload
+      uses: bacongobbler/azure-blob-storage-upload@v1.1.1
+      with:
+        connection_string: ${{ secrets.AZ_STORAGE_ACCOUNT_CONNECTION_STRING }}
+        container_name: release
+        # The name of the directory you want to upload
+        source_dir: az-upload-dir
