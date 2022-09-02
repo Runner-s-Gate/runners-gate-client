@@ -25,10 +25,17 @@ jobs:
     - name: Package build output 
       run: zip -r az-upload-dir/runners-gate.zip release
       
-    - name: Azure Blob Storage Upload
-      uses: bacongobbler/azure-blob-storage-upload@v1.1.1
+    - uses: LanceMcCarthy/Action-AzureBlobUpload@v2
+      name: Uploading to Azure storage...
       with:
         connection_string: ${{ secrets.AZ_STORAGE_ACCOUNT_CONNECTION_STRING }}
         container_name: release
-        # The name of the directory you want to upload
-        source_dir: az-upload-dir
+        source_folder: az-upload-dir
+      
+    #- name: Azure Blob Storage Upload
+    #  uses: bacongobbler/azure-blob-storage-upload@v1.1.1
+    #  with:
+    #    connection_string: ${{ secrets.AZ_STORAGE_ACCOUNT_CONNECTION_STRING }}
+    #    container_name: release
+    #    # The name of the directory you want to upload
+    #    source_dir: az-upload-dir
