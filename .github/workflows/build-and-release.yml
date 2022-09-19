@@ -33,6 +33,9 @@ jobs:
         zip -r ../runners-gate-windows.zip .;
         cd ../..
       
+    - name: Copy config file to staging dir
+      run: cp config-prod.cfg az-upload-dir/staging/config.cfg
+      
     - uses: LanceMcCarthy/Action-AzureBlobUpload@v2
       name: Uploading to Azure storage...
       with:
