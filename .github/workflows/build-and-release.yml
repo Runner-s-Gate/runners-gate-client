@@ -24,8 +24,8 @@ jobs:
 #        relative_project_path: ./
 #        archive_output: false
 
-    - name: Build .pck 
-      run: /home/azureuser/.local/share/godot/godot_executable/godot /home/azureuser/actions-runner/_work/runners-gate-client/runners-gate-client/project.godot --export "Windows Desktop" /home/azureuser/.local/share/godot/builds/Windows\ Desktop/runners-gate-client.exe
+#    - name: Build .pck 
+#      run: /home/azureuser/.local/share/godot/godot_executable/godot /home/azureuser/actions-runner/_work/runners-gate-client/runners-gate-client/project.godot --export "Windows Desktop" /home/azureuser/.local/share/godot/builds/Windows\ Desktop/runners-gate-client.exe
 
     - name: Package build output 
       run: >
