@@ -31,8 +31,10 @@ jobs:
     #- name:  Build Godot Project
     #  run: C:\Temp\Godot_v3.5-stable_mono_win64\Godot_v3.5-stable_mono_win64.exe --path . --export "Windows Desktop"
 
+
+
     - name: Package build output 
-      run: zip -r az-upload-dir/runners-gate.zip /home/azureuser/.local/share/godot/builds/Windows\ Desktop/
+      run: mkdir az-upload-dir; zip -r az-upload-dir/runners-gate.zip /home/azureuser/.local/share/godot/builds/Windows\ Desktop/
       
     - uses: LanceMcCarthy/Action-AzureBlobUpload@v2
       name: Uploading to Azure storage...
