@@ -15,6 +15,3 @@ jobs:
     
     - run: powershell C:\Temp\gd-build.ps1
     
-    - uses: GuillaumeFalourd/wait-sleep-action@v1
-      with:
-        time: '60' # 60 Seconds
