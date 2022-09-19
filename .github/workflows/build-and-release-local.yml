@@ -13,5 +13,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - run: "& 'C:\\Program Files\\Godot\\Godot_v3.5-stable_mono_win64.exe' --path . --export 'Windows Desktop'"
-      shell: pwsh 
+    - run: "\"C:\\Program Files\\Godot\\Godot_v3.5-stable_mono_win64.exe\" --path . --export 'Windows Desktop'"
