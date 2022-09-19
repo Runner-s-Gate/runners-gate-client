@@ -13,8 +13,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: Copy Godot Headless Installation
-      run: cp -r /home/azureuser/Godot_v3.5-stable_mono_linux_headless_64/* .
+    #- name: Copy Godot Headless Installation
+    #  run: cp -r /home/azureuser/Godot_v3.5-stable_mono_linux_headless_64/* .
 
     - name: Copy config file
       run: cp config-prod.cfg config.cfg
