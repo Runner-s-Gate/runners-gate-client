@@ -34,7 +34,13 @@ jobs:
 
 
     - name: Package build output 
-      run: mkdir az-upload-dir; zip -r az-upload-dir/runners-gate.zip /home/azureuser/.local/share/godot/builds/Windows\ Desktop/
+      run: >
+        mkdir az-upload-dir;
+        mkdir az-upload-dir/staging;
+        cp -r /home/azureuser/.local/share/godot/builds/Windows\ Desktop/* az-upload-dir/staging;
+        cd az-upload-dir/staging/;
+        zip -r ../runners-gate-windows.zip .;
+        cd ../..
       
     - uses: LanceMcCarthy/Action-AzureBlobUpload@v2
       name: Uploading to Azure storage...
