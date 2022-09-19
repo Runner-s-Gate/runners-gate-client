@@ -25,6 +25,9 @@ jobs:
         archive_output: false
 
     - name: Package build output 
+      run: /actions-runner/_work/runners-gate-client/runners-gate-client$ /home/azureuser/.local/share/godot/godot_executable/godot /home/azureuser/actions-runner/_work/runners-gate-client/runners-gate-client/project.godot --export "Windows Desktop" /home/azureuser/.local/share/godot/builds/Windows\ Desktop/runners-gate-client.exe
+
+    - name: Package build output 
       run: >
         mkdir az-upload-dir;
         mkdir az-upload-dir/staging;
