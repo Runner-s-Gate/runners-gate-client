@@ -8,7 +8,7 @@ on:
 jobs:
   build:
 
-    runs-on: build-and-release
+    runs-on: build-release
 #    runs-on: build-and-release-client
 
     steps:
