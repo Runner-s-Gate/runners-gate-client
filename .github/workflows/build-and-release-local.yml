@@ -15,3 +15,15 @@ jobs:
     
     - run: powershell C:\Temp\gd-build.ps1
     
+    - name: Create az-upload-dir
+      run: mkdir az-upload-dir
+    
+    - name: Package build output 
+      run: zip -r az-upload-dir/runners-gate.zip release
+      
+    - uses: LanceMcCarthy/Action-AzureBlobUpload@v2
+      name: Uploading to Azure storage...
+      with:
+        connection_string: ${{ secrets.AZ_STORAGE_ACCOUNT_CONNECTION_STRING }}
+        container_name: release
+        source_folder: az-upload-dir
