@@ -1,0 +1,32 @@
+name: Build and Release client local
+
+on:
+  push:
+    branches: [ "release" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: build-and-release-client
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - run: powershell C:\Temp\gd-build.ps1
+    
+    - name: Copy config file
+      run: cp config-prod.cfg release/config.cfg
+    
+    - name: Create az-upload-dir
+      run: mkdir az-upload-dir
+    
+    - name: Package build output 
+      run: cd release; 7z a -tzip "../az-upload-dir/runners-gate-windows.zip" "*"; cd ..
+      
+    - uses: LanceMcCarthy/Action-AzureBlobUpload@v2
+      name: Uploading to Azure storage...
+      with:
+        connection_string: ${{ secrets.AZ_STORAGE_ACCOUNT_CONNECTION_STRING }}
+        container_name: release
+        source_folder: az-upload-dir
