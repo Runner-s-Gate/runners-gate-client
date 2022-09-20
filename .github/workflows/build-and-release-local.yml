@@ -15,11 +15,14 @@ jobs:
     
     - run: powershell C:\Temp\gd-build.ps1
     
+    - name: Copy config file
+      run: cp config-prod.cfg release/config.cfg
+    
     - name: Create az-upload-dir
       run: mkdir az-upload-dir
     
     - name: Package build output 
-      run: zip -r az-upload-dir/runners-gate.zip release
+      run: cd release; 7z a -tzip "../az-upload-dir/runners-gate-windows.zip" "*"; cd ..
       
     - uses: LanceMcCarthy/Action-AzureBlobUpload@v2
       name: Uploading to Azure storage...
