@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - run: powershell C:\Temp\gd-build.ps1
+    - run: powershell .\gd-build.ps1
     
     - name: Copy config file
       run: cp config-prod.cfg release/config.cfg
