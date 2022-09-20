@@ -5,6 +5,7 @@ on:
     branches: [ "release" ]
   workflow_dispatch:
   repository_dispatch:
+    types: release
 
 jobs:
   build:
