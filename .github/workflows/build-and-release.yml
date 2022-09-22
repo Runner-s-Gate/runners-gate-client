@@ -17,9 +17,6 @@ jobs:
     
     - run: powershell .\cd-build.ps1
     
-    - name: Copy config file
-      run: cp config-prod.cfg release/config.cfg
-    
     - name: Create az-upload-dir
       run: mkdir az-upload-dir
     
